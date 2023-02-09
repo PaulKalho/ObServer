@@ -2,7 +2,7 @@ import React from "react"
 import AddNewItem from "../components/dashboard/AddNewItem";
 import Item from "../components/dashboard/Item";
 
-function Dashboard (props) {
+function Dashboard () {
   return (
     <div>
         <div className="Statistik">Statistik</div>

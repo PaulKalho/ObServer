@@ -1,9 +1,9 @@
-import Dashboard from "./pages/Dashboard";
+import AppRouter from "./AppRouter";
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard />
+    <div>
+      <AppRouter />
     </div>
   );
 }
