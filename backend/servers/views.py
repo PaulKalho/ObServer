@@ -5,13 +5,12 @@ from rest_framework import viewsets
 from .models import Server
 from .serializers import ServerSerializer
 
-# Create your views here.
 class ServerView(viewsets.ModelViewSet):
     queryset = Server.objects.all()
     serializer_class = ServerSerializer
 
     def get_queryset(self):
-        return self
+        return self.queryset.filter()
 
     def perform_create(self, serializer):
         serializer.save()

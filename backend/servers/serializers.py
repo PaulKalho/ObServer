@@ -4,7 +4,7 @@ from .models import Server
 
 class ServerSerializer(serializers.ModelSerializer):
     class Meta:
-        model: Server
+        model = Server
         fields = (
             'id',
             'serverName',
