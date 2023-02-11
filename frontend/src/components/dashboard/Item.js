@@ -9,11 +9,14 @@ function Item (data) {
   //      ipAdress:
   //      option:
   // }
+  
   return (
-    <div className="grid grid-cols-1 grid-rows-3 p-5 h-80 w-4/12 border-2 border-white rounded-lg justify-center items-center">
-        <div className="ueberscr self-start">{data.data.serverName} | {data.data.ipAdress}</div>
+    <div className="grid grid-cols-1 grid-rows-3 p-5 w-[380px] h-96 border-2 border-white rounded-lg justify-center items-center">
+        <div className="ueberscr self-start font-bold">{data.data.serverName} | {data.data.ipAdress}</div>
         <div className="bild"><PingGraph/></div>
-        <div className="relative self-end">{data.data.option}</div>
+        <div className="relative self-end">
+          <button className="w-full bg-cyan-600 p-2 rounded-lg duration-100 hover:bg-cyan-800">Details</button>
+        </div>
     </div>
   )
 };

@@ -55,7 +55,9 @@ function Dashboard () {
         <div className="grid-area flex gap-4 flex-wrap px-10 mt-4">
             {renderServers()}
             <AddNewItem onClick={handlePopup}/>
-            { isPopup ? <PopUpAddServer Servers={Servers} onClick={handlePopup} addServer={addServer} /> : <div></div>}
+            <div className={`wrapper duration-100 ${isPopup ? "" : "hidden"}`}>
+              <PopUpAddServer Servers={Servers} onClick={handlePopup} addServer={addServer} />
+            </div>
         </div>
     </div>
   )
