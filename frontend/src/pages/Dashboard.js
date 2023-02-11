@@ -19,8 +19,8 @@ function Dashboard () {
     //This function adds a Server-Config to the Array
 
 
-    setServers([...servers, 'test']);
-    
+    setServers([...servers, data]);
+    console.log(servers);
   }
 
   function renderServers() {
@@ -28,19 +28,17 @@ function Dashboard () {
     let arr = [];
     
     servers.forEach(element => {
-      arr.push(<Item /> )
+      arr.push(<Item key={element} data={element}/> )
     });
     return arr;
   }
 
   return (
     <div>
-        <div className="Statistik">Statistik</div>
-        <div className="grid-area flex gap-4">
+        <div className="grid-area flex gap-4 flex-wrap justify-center mt-4">
             {renderServers()}
-            <button onClick={addServer}>Hibzug</button>
             <AddNewItem onClick={handlePopup}/>
-            { isPopup ? <PopUpAddServer onClick={handlePopup}/> : <div></div>}
+            { isPopup ? <PopUpAddServer onClick={handlePopup} addServer={addServer} /> : <div></div>}
         </div>
     </div>
   )
