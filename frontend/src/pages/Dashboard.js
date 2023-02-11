@@ -34,7 +34,7 @@ function Dashboard () {
   async function addServer(data) {
     //This function adds a Server-Config to the Array
     await Servers.m_Server_insert(data);
-    
+
     setServers([...servers, data]);
     console.log(servers);
   }
@@ -52,7 +52,7 @@ function Dashboard () {
 
   return (
     <div>
-        <div className="grid-area flex gap-4 flex-wrap justify-center mt-4">
+        <div className="grid-area flex gap-4 flex-wrap px-10 mt-4">
             {renderServers()}
             <AddNewItem onClick={handlePopup}/>
             { isPopup ? <PopUpAddServer Servers={Servers} onClick={handlePopup} addServer={addServer} /> : <div></div>}
