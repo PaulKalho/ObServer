@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
-import PopUpAddServer from "../components/context/PopUpAddServer";
+import PopUp from "../components/context/PopUp";
 import PopUpDetailsServer from "../components/context/PopUpDetailsServer";
-import AddNewItem from "../components/dashboard/AddNewItem";
 import Item from "../components/dashboard/Item";
 import m_Servers from "../models/m_Servers";
+import AddServerContent from "../components/context/AddServerContent";
+import AddItemContent from "../components/dashboard/AddItem";
 
 function Dashboard () {
   const Servers = new m_Servers();
@@ -51,7 +52,9 @@ function Dashboard () {
     // console.log(servers)
     
     servers.forEach(element => {
-      arr.push(<Item key={element} data={element} onClickDetails={handlePopupDetails}/> )
+      arr.push(
+        <Item key={element.id} data={element} onClickDetails={handlePopupDetails} />
+      )
     });
     return arr;
   }
@@ -60,13 +63,18 @@ function Dashboard () {
     <div>
         <div className="grid-area flex gap-4 flex-wrap px-10 mt-4">
             {renderServers()}
-            <AddNewItem onClick={handlePopupAdd}/>
+            <AddItemContent onClick={handlePopupAdd} />
             <div className={`wrapper duration-100 ${isPopupAdd ? "" : "hidden"}`}>
-              <PopUpAddServer Servers={Servers} onClick={handlePopupAdd} addServer={addServer} />
+              <PopUp onClick={handlePopupAdd}>
+                <AddServerContent Servers={Servers} addServer={addServer}/>
+              </PopUp>
             </div>
             <div className={`wrapper duration-100 ${isPopupDetails ? "" : "hidden"}`}>
-              <PopUpDetailsServer onClick={handlePopupDetails}/>
+              <PopUp onClick={handlePopupDetails}>
+                <PopUpDetailsServer />
+              </PopUp>
             </div>
+
         </div>
     </div>
   )

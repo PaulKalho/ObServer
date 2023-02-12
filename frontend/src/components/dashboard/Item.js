@@ -2,7 +2,6 @@ import React from "react"
 import PingGraph from "./PingGraph";
 
 function Item ({data, onClickDetails}) {
-  console.log(data.servername);
   //Prop Data:
   // {
   //      ServerName:
