@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
 import PopUpAddServer from "../components/context/PopUpAddServer";
+import PopUpDetailsServer from "../components/context/PopUpDetailsServer";
 import AddNewItem from "../components/dashboard/AddNewItem";
 import Item from "../components/dashboard/Item";
 import m_Servers from "../models/m_Servers";
 
 function Dashboard () {
   const Servers = new m_Servers();
-  const[isPopup, setIsPopup] = useState(false);
+  const[isPopupAdd, setIsPopupAdd] = useState(false);
+  const[isPopupDetails, setIsPopupDetails] = useState(false);
   const[servers, setServers] = useState([]);
   const[loading, setLoading] = useState(false);
 
@@ -27,8 +29,12 @@ function Dashboard () {
   }, [])
   
 
-  function handlePopup() {
-    setIsPopup(!isPopup);
+  function handlePopupAdd() {
+    setIsPopupAdd(!isPopupAdd);
+  }
+
+  function handlePopupDetails() {
+    setIsPopupDetails(!isPopupDetails);
   }
 
   async function addServer(data) {
@@ -45,7 +51,7 @@ function Dashboard () {
     // console.log(servers)
     
     servers.forEach(element => {
-      arr.push(<Item key={element} data={element}/> )
+      arr.push(<Item key={element} data={element} onClickDetails={handlePopupDetails}/> )
     });
     return arr;
   }
@@ -54,9 +60,12 @@ function Dashboard () {
     <div>
         <div className="grid-area flex gap-4 flex-wrap px-10 mt-4">
             {renderServers()}
-            <AddNewItem onClick={handlePopup}/>
-            <div className={`wrapper duration-100 ${isPopup ? "" : "hidden"}`}>
-              <PopUpAddServer Servers={Servers} onClick={handlePopup} addServer={addServer} />
+            <AddNewItem onClick={handlePopupAdd}/>
+            <div className={`wrapper duration-100 ${isPopupAdd ? "" : "hidden"}`}>
+              <PopUpAddServer Servers={Servers} onClick={handlePopupAdd} addServer={addServer} />
+            </div>
+            <div className={`wrapper duration-100 ${isPopupDetails ? "" : "hidden"}`}>
+              <PopUpDetailsServer onClick={handlePopupDetails}/>
             </div>
         </div>
     </div>
